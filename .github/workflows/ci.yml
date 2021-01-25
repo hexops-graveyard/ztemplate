@@ -8,7 +8,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Setup Zig
-        run: sudo wget -c https://ziglang.org/builds/zig-linux-x86_64-0.8.0-dev.1039+bea791b63.tar.xz -O - | tar -xz -C /usr/local/bin
+        run: |
+          sudo apt install xz-utils
+          sudo wget -c https://ziglang.org/builds/zig-linux-x86_64-0.8.0-dev.1039+bea791b63.tar.xz -O - | tar -xz -C /usr/local/bin
       - name: Install Task
         run: sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
       - run: task lint
